@@ -58,17 +58,9 @@
     ]
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "yarn format",
-      "yarn lint"
-    ],
-    "./src/**": [
-      "yarn format"
+    "**/*.{js,jsx}": [
+      "npm run lint",
+      "prettier --write"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
