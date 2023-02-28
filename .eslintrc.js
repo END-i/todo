@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
   env: {
     browser: true,
@@ -16,7 +17,7 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
-    'prettier/prettier': 'error',
+    // 'prettier/prettier': ['error'],
     // suppress errors for missing 'import React' in files
     'react/react-in-jsx-scope': 'off',
     'no-unused-vars': ['error'],

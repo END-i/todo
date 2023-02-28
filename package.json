@@ -35,8 +35,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron-dev": "electron .",
-    "lint": "eslint --fix",
-    "pretty": "prettier --write ."
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -57,9 +58,11 @@
     ]
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "yarn lint",
-      "yarn pretty"
+    "*.{js,jsx,ts,tsx}": [
+      "yarn lint"
+    ],
+    "*.{js,jsx,ts,tsx,json,css,js}": [
+      "yarn format"
     ]
   }
 }
