@@ -19,5 +19,6 @@ module.exports = {
     'prettier/prettier': 'error',
     // suppress errors for missing 'import React' in files
     'react/react-in-jsx-scope': 'off',
+    'no-unused-vars': ['error'],
   },
 };
