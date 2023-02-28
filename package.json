@@ -59,10 +59,11 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
+      "yarn format",
       "yarn lint"
     ],
     "./src/**": [
-      "prettier --write ."
+      "yarn format"
     ]
   },
   "husky": {
