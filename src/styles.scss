@@ -1,0 +1,275 @@
+$main-font-family: 'Open Sans';
+$font-style-normal: normal;
+$font-weight: 600;
+$font-size-20px: 20px;
+$line-height: 27px;
+$turquoise-100: #54bab9;
+$turquoise-300: #38938a;
+$white: #fff;
+$white-100: #f7f7f7;
+
+body {
+  margin: 0;
+  font-family: $main-font-family, sans-serif;
+  font-style: $font-style-normal;
+  color: $white;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+  background: #f7ecde;
+}
+
+.main-title {
+  color: #e9c597;
+  position: absolute;
+  text-align: center;
+  width: 258px;
+  left: 50%;
+  transform: translate(-50%, 80px);
+  font-weight: 800;
+  font-size: 31px;
+  line-height: 90%;
+}
+.main-container {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  max-width: 100%;
+  width: 912px;
+  height: 520px;
+}
+
+.container {
+  background: $turquoise-100;
+  border-radius: 10px;
+  box-shadow: 0px 6px 0px 0px $turquoise-300;
+}
+
+.left-panel {
+  padding: 25px 0 20px;
+  box-sizing: border-box;
+  min-width: 250px;
+
+  .title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+
+  .title:before,
+  .title:after {
+    background-color: #e4e4e4;
+    content: '';
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+  .title:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+  .title:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
+
+  .button {
+    margin-top: auto;
+  }
+}
+
+.info-panel {
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.task-list-container {
+  height: calc(100% - 50px - 12px);
+
+  .task-list {
+    flex-grow: 1;
+    overflow: auto;
+  }
+
+  .task-item {
+    padding: 25px 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e4e4e4;
+  }
+
+  .filters {
+    color: #44a0a0;
+    padding: 12px 0;
+
+    .active {
+      color: #fff;
+    }
+
+    gap: 21px;
+
+    .item {
+      cursor: pointer;
+    }
+  }
+}
+
+.modal-back-shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3.5px);
+}
+
+.modal-container {
+  width: 500px;
+  height: 450px;
+  background: #54bab9;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  box-sizing: border-box;
+
+  .actions-bar {
+    justify-content: right;
+    padding: 20px;
+    margin-top: auto;
+  }
+}
+
+.create-task-modal {
+  .title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 20px 0 18px;
+    box-sizing: border-box;
+  }
+
+  input {
+    outline: none;
+    margin: 0 40px;
+    padding: 0 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    line-height: 200%;
+    color: #858585;
+    border: none;
+    box-sizing: border-box;
+  }
+}
+// spec styles
+.flex {
+  display: flex;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-space-between {
+  justify-content: space-between;
+}
+.justify-space-around {
+  justify-content: space-around;
+}
+.align-center {
+  align-items: center;
+}
+.row {
+  flex-direction: row;
+}
+.column {
+  flex-direction: column;
+}
+.full-height {
+  height: 100%;
+}
+.full-width {
+  width: 100%;
+}
+.ml-12 {
+  margin-left: 12px;
+}
+.mb-12 {
+  margin-bottom: 12px;
+}
+.mr-12 {
+  margin-right: 12px;
+}
+
+// components
+.button {
+  cursor: pointer;
+
+  border-radius: 10px;
+  background: #38938a;
+
+  color: #fff;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 90%;
+
+  padding: 6px 20px;
+
+  outline: none;
+  box-shadow: none;
+  border: none;
+
+  &.linked {
+    background: none;
+    color: #1d8a8a;
+  }
+}
+
+.category-label {
+  font-weight: 400;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &.w150 {
+    max-width: 150px;
+    width: 100%;
+  }
+}
+
+.completed-icon {
+  min-height: 30px;
+  min-width: 30px;
+  background: #9ed2c6;
+  border-radius: 100%;
+  box-sizing: border-box;
+}
+
+// TODO: need to remove
+.green {
+  background: #4caf50;
+}
+.red {
+  background: #ff5252;
+}
+.yellow {
+  background: #ffc107;
+}
+.purpura {
+  background: #9c27b0;
+}
+.light-green {
+  background: #25a7b8;
+}
