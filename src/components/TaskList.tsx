@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useContext, useMemo } from 'react';
+import { AppContext, Task } from '../app-context';
+
+const TABS = ['Active', 'All', 'Completed'];
 
 const Filters = () => {
-  const [activeIdx, setActiveIdx] = useState(1);
+  const { changeFilters, filters } = useContext(AppContext);
 
-  const tabs = ['Active', 'All', 'Completed'];
   return (
     <div className="filters flex row align-center justify-center">
-      {tabs.map((tabText, idx) => (
-        <div key={idx} className={`${idx === activeIdx ? 'active' : ''} item`} onClick={() => setActiveIdx(idx)}>
+      {TABS.map((tabText, idx) => (
+        <div key={idx} className={`${filters === tabText ? 'active' : ''} item`} onClick={() => changeFilters(tabText)}>
           {tabText}
         </div>
       ))}
@@ -16,13 +18,19 @@ const Filters = () => {
 };
 
 interface CompletedIconProps {
+  id: number;
   completed: boolean;
 }
-const CompletedIcon = ({ completed }: CompletedIconProps) => {
-  const [done, setDone] = useState(completed);
+const CompletedIcon = ({ completed, id }: CompletedIconProps) => {
+  const { toggleCompletedTask } = useContext(AppContext);
+
+  const handleComplete = () => {
+    toggleCompletedTask(id);
+  };
+
   return (
-    <div className="completed-icon flex mr-12" onClick={() => setDone((prev) => !prev)}>
-      {done ? (
+    <div className="completed-icon flex mr-12" onClick={handleComplete}>
+      {completed ? (
         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="15" cy="15" r="15" fill="#4CAF50" />
           <path
@@ -35,33 +43,56 @@ const CompletedIcon = ({ completed }: CompletedIconProps) => {
   );
 };
 
-interface TaskProps {
-  title: string;
-  completed: boolean;
-}
-const Task = ({ title, completed }: TaskProps) => {
+type TaskProps = Task;
+const TaskItem = ({ title, completed, categoryId, id }: TaskProps) => {
+  const { categories } = useContext(AppContext);
+  const category = categories[categoryId];
   return (
     <div className="task-item flex row align-center justify-space-between">
-      <CompletedIcon completed={completed} />
+      <CompletedIcon completed={completed} id={id} />
       <span>{title}</span>
-      <div className="category-label w150 red ml-12">Urgent</div>
+      {category ? (
+        <div className="category-label w150 red ml-12" style={{ background: category.color }}>
+          {category.title}
+        </div>
+      ) : null}
     </div>
   );
 };
 
 const TaskList = () => {
+  const { tasks, filters } = useContext(AppContext);
+
+  const filteredTasks = useMemo(() => {
+    if (!filters) {
+      return tasks;
+    }
+
+    return tasks.filter((task) => {
+      switch (filters) {
+        case 'Completed':
+          return !!task.completed;
+        case 'Active':
+          return !task.completed;
+        default: {
+          const selectedCategoryId = Number(filters);
+          if (isNaN(selectedCategoryId)) {
+            return tasks;
+          }
+          return selectedCategoryId === task.categoryId;
+        }
+      }
+    });
+  }, [tasks, filters]);
+
   return (
     <div className="container task-list-container flex column">
-      <div className="task-list">
-        <Task title={'Memorize the fifty states and their capitals'} completed={true} />
-        <Task title={'Memorize the fifty states and their capitals memorize the fifty states and their capitals'} completed={false} />
-        <Task title={'Memorize the fifty states and their capitals'} completed={true} />
-        <Task title={'Memorize the fifty states and their capitals'} completed={true} />
-        <Task title={'Memorize the fifty states and their capitals'} completed={true} />
-        <Task title={'Memorize the fifty states and their capitals'} completed={false} />
-        <Task title={'Memorize the fifty states and their capitals'} completed={true} />
-        <Task title={'Memorize the fifty states and their capitals'} completed={true} />
-        <Task title={'Memorize the fifty states and their capitals'} completed={true} />
+      <div className="task-list flex column">
+        {filteredTasks.length ? (
+          filteredTasks.map((task) => <TaskItem key={task.id} {...task} />)
+        ) : (
+          <span className="empty-list">No Tasks</span>
+        )}
       </div>
       <Filters />
     </div>

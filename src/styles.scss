@@ -47,21 +47,14 @@ body {
   border-radius: 10px;
   box-shadow: 0px 6px 0px 0px $turquoise-300;
 }
+.category-list-title {
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  min-height: 30px;
 
-.left-panel {
-  padding: 25px 0 20px;
-  box-sizing: border-box;
-  min-width: 250px;
-
-  .title {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 40px;
-    overflow: hidden;
-  }
-
-  .title:before,
-  .title:after {
+  &:before,
+  &:after {
     background-color: #e4e4e4;
     content: '';
     display: inline-block;
@@ -70,14 +63,20 @@ body {
     vertical-align: middle;
     width: 50%;
   }
-  .title:before {
+  &:before {
     right: 0.5em;
     margin-left: -50%;
   }
-  .title:after {
+  &:after {
     left: 0.5em;
     margin-right: -50%;
   }
+}
+
+.left-panel {
+  padding: 25px 0 20px;
+  box-sizing: border-box;
+  min-width: 250px;
 
   .button {
     margin-top: auto;
@@ -87,6 +86,12 @@ body {
 .info-panel {
   padding: 10px 20px;
   box-sizing: border-box;
+}
+
+.empty-list {
+  color: rgb(255 255 255 / 50%);
+  font-size: 16px;
+  margin: 50px auto 0;
 }
 
 .task-list-container {
@@ -101,6 +106,12 @@ body {
     padding: 25px 20px;
     box-sizing: border-box;
     border-bottom: 1px solid #e4e4e4;
+    align-items: flex-start;
+
+    span {
+      margin-right: auto;
+      overflow-wrap: anywhere;
+    }
   }
 
   .filters {
@@ -131,7 +142,6 @@ body {
 
 .modal-container {
   width: 500px;
-  height: 450px;
   background: #54bab9;
   border: 2px solid #ffffff;
   border-radius: 10px;
@@ -150,7 +160,8 @@ body {
   }
 }
 
-.create-task-modal {
+.create-task-modal,
+.create-category-modal {
   .title {
     font-weight: 700;
     font-size: 20px;
@@ -171,6 +182,18 @@ body {
     color: #858585;
     border: none;
     box-sizing: border-box;
+  }
+}
+
+.create-task-modal {
+  .category-list {
+    max-height: 90px;
+  }
+}
+
+.create-category-modal {
+  label {
+    margin: 20px 42px 0;
   }
 }
 // spec styles
@@ -195,6 +218,9 @@ body {
 .column {
   flex-direction: column;
 }
+.flex-wrap {
+  flex-wrap: wrap;
+}
 .full-height {
   height: 100%;
 }
@@ -210,7 +236,9 @@ body {
 .mr-12 {
   margin-right: 12px;
 }
-
+.mt-35 {
+  margin-top: 35px;
+}
 // components
 .button {
   cursor: pointer;
@@ -238,14 +266,30 @@ body {
 .category-label {
   font-weight: 400;
   width: 200px;
-  height: 30px;
+  height: auto;
   text-align: center;
   border-radius: 10px;
   cursor: pointer;
+  position: relative;
 
   &.w150 {
     max-width: 150px;
     width: 100%;
+  }
+
+  &.active {
+    text-decoration: underline;
+  }
+}
+
+.category-list {
+  overflow: auto;
+  width: 100%;
+
+  .close-icon {
+    position: absolute;
+    right: -10px;
+    top: 0px;
   }
 }
 

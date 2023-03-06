@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 interface ModalProps {
@@ -9,6 +10,28 @@ interface ModalProps {
 }
 
 const Modal = ({ children, onClose, onSubmit, className, isOpen }: ModalProps) => {
+  // const handleKeyboardEvent = (event: KeyboardEvent) => {
+  //   switch (event.key) {
+  //     case 'Enter':
+  //       onSubmit();
+  //       break;
+  //     case 'Escape':
+  //       onClose();
+  //       break;
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   document.removeEventListener('keyup', handleKeyboardEvent, false);
+
+  //   if (isOpen) {
+  //     document.addEventListener('keyup', handleKeyboardEvent, false);
+  //     return () => {
+  //       document.removeEventListener('keyup', handleKeyboardEvent, false);
+  //     };
+  //   }
+  // }, [isOpen]);
+
   if (!isOpen) {
     return null;
   }
