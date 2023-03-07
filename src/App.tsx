@@ -6,10 +6,10 @@ import TaskList from './components/TaskList';
 const App = () => {
   return (
     <AppProvider>
-      <span className="main-title">PERSONAL TASK MANAGER</span>
+      <p className="main-title">PERSONAL TASK MANAGER</p>
       <div className="main-container flex row">
         <LeftPanel />
-        <div className="flex column ml-12 full-width full-height">
+        <div className="flex column full-width full-height">
           <InfoPanel />
           <TaskList />
         </div>

@@ -35,6 +35,11 @@ const InfoPanel = () => {
   };
   return (
     <>
+      <div className="container info-panel mobile flex align-center justify-center mb-12 w-150">
+        <button className="button linked" onClick={() => setIsOpenModal(true)}>
+          Add new task
+        </button>
+      </div>
       <div className="container info-panel flex align-center justify-space-between mb-12">
         <button className="button linked" disabled>
           {`${tasks.length} tasks`}

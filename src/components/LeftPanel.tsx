@@ -13,7 +13,7 @@ const LeftPanel = () => {
 
   return (
     <>
-      <div className="left-panel flex column align-center full-height container">
+      <div className="left-panel column align-center full-height container mr-12">
         <div className="category-list-title mb-12">Categories</div>
         <div className="category-list mb-12 flex column align-center">
           {Object.keys(categories).length ? (

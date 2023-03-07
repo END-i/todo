@@ -71,9 +71,11 @@ const TaskList = () => {
     return tasks.filter((task) => {
       switch (filters) {
         case 'Completed':
-          return !!task.completed;
+          return task.completed;
         case 'Active':
           return !task.completed;
+        case 'All':
+          return tasks;
         default: {
           const selectedCategoryId = Number(filters);
           if (isNaN(selectedCategoryId)) {

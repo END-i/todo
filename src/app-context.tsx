@@ -83,6 +83,30 @@ export const AppProvider = ({ children }: PropsAppProvider) => {
       categoryId: 0,
       completed: false,
     },
+    {
+      id: 31,
+      title: 'Some tasks',
+      categoryId: 0,
+      completed: false,
+    },
+    {
+      id: 41,
+      title: 'Some tasks',
+      categoryId: 0,
+      completed: false,
+    },
+    {
+      id: 51,
+      title: 'Some tasks',
+      categoryId: 0,
+      completed: false,
+    },
+    {
+      id: 61,
+      title: 'Some tasks',
+      categoryId: 0,
+      completed: false,
+    },
   ]);
   const [categories, setCategories] = useState<Categories>({
     1: {
